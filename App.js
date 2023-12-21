@@ -1,12 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, SafeAreaView } from 'react-native';
+
+
+import LogInScreen from './screens/LogInScreen';
+import SignUpScreen from './screens/SignUpScreen';
 
 export default function App() {
+  const [screen, setccreen] = useState('login');
+  let Screen = <LogInScreen onChangeScreen={ChangeScreen} />
+
+  function ChangeScreen(S) {
+    setccreen(S);
+  }
+  if (screen == 'login') {
+    Screen = (<LogInScreen onChangeScreen={ChangeScreen} />);
+  }
+  if (screen == 'signup') {
+    Screen = (<SignUpScreen onChangeScreen={ChangeScreen} />);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <SafeAreaView style={{ flex: 1 }}>{Screen}</SafeAreaView>
+    </>
   );
 }
 
