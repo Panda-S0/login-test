@@ -11,14 +11,9 @@ import {
   ScrollView,
 } from "react-native"
 
-import Inputext from "../components/inputext"
-
-function LogInScreen({ onChangeScreen }) {
-  function SignUp() {
-    onChangeScreen("signup")
-  }
-  function HomePage() {
-    onChangeScreen("homepage")
+function HomePageScreen({ onChangeScreen }) {
+  function LogIn() {
+    onChangeScreen("login")
   }
 
   return (
@@ -28,33 +23,20 @@ function LogInScreen({ onChangeScreen }) {
         behavior="position"
       >
         <View style={styles.rootContainer}>
-          <Text>Log In</Text>
-          <Inputext placeholder="Username" />
-          <Inputext placeholder="Password" />
+          <Text>HOME PAGE</Text>
           <Button
             style={{ marginTop: 100 }}
             color="#ff5c5c"
-            title="Log In"
-            onPress={HomePage}
+            title="Sign Out"
+            onPress={LogIn}
           ></Button>
-          <Pressable
-            onPress={SignUp}
-            android_ripple={{ color: "red" }}
-            style={{
-              marginTop: 10,
-              padding: 10,
-              backgroundColor: "pink",
-            }}
-          >
-            <Text>Make an account</Text>
-          </Pressable>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
   )
 }
 
-export default LogInScreen
+export default HomePageScreen
 
 let color = "#B41FB2"
 
