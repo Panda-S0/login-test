@@ -12,6 +12,7 @@ import {
 } from "react-native"
 
 import Inputext from "../components/inputext"
+import users from "../Data/Users.js"
 
 function LogInScreen({ onChangeScreen }) {
   function SignUp() {
@@ -19,6 +20,9 @@ function LogInScreen({ onChangeScreen }) {
   }
   function HomePage() {
     onChangeScreen("homepage")
+  }
+  function shonames() {
+    //console.log(users)
   }
 
   return (

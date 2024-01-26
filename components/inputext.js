@@ -1,14 +1,16 @@
 import { View, StyleSheet, TextInput, Text } from "react-native"
 
-function Inputext({ style, placeholder }) {
+function Inputext({ style, placeholder, funk, value }) {
   return (
     <View style={[styles.viewall, style]}>
       <Text style={{ height: "30%" }}>{placeholder}</Text>
       <TextInput
+        onChangeText={funk}
         style={styles.infoInput}
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={placeholder}
+        value={value}
       ></TextInput>
     </View>
   )
@@ -26,16 +28,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   infoInput: {
+    paddingLeft: 10,
     height: "65%",
     width: "100%",
-    fontSize: 32,
+    fontSize: 13,
     borderTopColor: color,
     borderRightColor: color,
     borderLeftColor: color,
     borderBottomColor: "#50234F",
     borderWidth: 4,
     color: "blue",
-    paddingLeft: 10,
     borderRadius: 10,
   },
 })
