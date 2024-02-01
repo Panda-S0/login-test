@@ -12,17 +12,35 @@ import {
 } from "react-native"
 
 import Inputext from "../components/inputext"
-import users from "../Data/Users.js"
+import checkUser from "../Data/checkUsers.js"
 
 function LogInScreen({ onChangeScreen }) {
+  const [currentUserName, setCurrentUserName] = useState("")
+  const [currentPassword, setCurrentPassword] = useState("")
+  const [Valid, setValid] = useState(true)
+  const [currentUser] = useState({
+    username: "",
+    password: "",
+    user_type: "admin",
+  })
+
+  function addUserName(Content) {
+    setCurrentUserName(Content)
+    currentUser.username = Content
+  }
+  function addPassword(Content) {
+    setCurrentPassword(Content)
+    currentUser.password = Content
+  }
   function SignUp() {
     onChangeScreen("signup")
   }
   function HomePage() {
-    onChangeScreen("homepage")
-  }
-  function shonames() {
-    //console.log(users)
+    if (checkUser(currentUser)) {
+      onChangeScreen("homepage", currentUser.username)
+    } else {
+      setValid(false)
+    }
   }
 
   return (
@@ -33,8 +51,21 @@ function LogInScreen({ onChangeScreen }) {
       >
         <View style={styles.rootContainer}>
           <Text>Log In</Text>
-          <Inputext placeholder="Username" />
-          <Inputext placeholder="Password" />
+          <Inputext
+            placeholder="Username"
+            funk={addUserName}
+            value={currentUserName}
+          />
+          <Inputext
+            placeholder="Password"
+            funk={addPassword}
+            value={currentPassword}
+          />
+          {!Valid && (
+            <Text style={{ color: "red" }}>
+              wrong username or password
+            </Text>
+          )}
           <Button
             style={{ marginTop: 100 }}
             color="#ff5c5c"

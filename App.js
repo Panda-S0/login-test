@@ -8,10 +8,12 @@ import HomePageScreen from "./screens/HomePageScreen"
 
 export default function App() {
   const [screen, setccreen] = useState("login")
+  const [user, setuser] = useState(null)
   let Screen = <LogInScreen onChangeScreen={ChangeScreen} />
 
-  function ChangeScreen(S) {
+  function ChangeScreen(S, u) {
     setccreen(S)
+    setuser(u)
   }
   if (screen == "login") {
     Screen = <LogInScreen onChangeScreen={ChangeScreen} />
@@ -20,7 +22,7 @@ export default function App() {
     Screen = <SignUpScreen onChangeScreen={ChangeScreen} />
   }
   if (screen == "homepage") {
-    Screen = <HomePageScreen onChangeScreen={ChangeScreen} />
+    Screen = <HomePageScreen onChangeScreen={ChangeScreen} usr={user} />
   }
   return (
     <>

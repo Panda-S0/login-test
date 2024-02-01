@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native"
 
-function HomePageScreen({ onChangeScreen }) {
+function HomePageScreen({ onChangeScreen, usr }) {
   function LogIn() {
     onChangeScreen("login")
   }
@@ -24,6 +24,7 @@ function HomePageScreen({ onChangeScreen }) {
       >
         <View style={styles.rootContainer}>
           <Text>HOME PAGE</Text>
+          <Text>you are {usr}</Text>
           <Button
             style={{ marginTop: 100 }}
             color="#ff5c5c"

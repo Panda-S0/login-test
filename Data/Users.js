@@ -11,12 +11,4 @@ const users = [
   },
 ]
 
-function addUser(usr) {
-  users.push(usr)
-  for (let i = 0; i < users.length; i++) {
-    console.log(users[i])
-  }
-  console.log("=====================================================")
-}
-
-export default addUser
+export default users
