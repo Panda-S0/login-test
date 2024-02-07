@@ -3,17 +3,18 @@ import {
   Alert,
   Text,
   View,
-  StyleSheet,
   Pressable,
   KeyboardAvoidingView,
   ScrollView,
   Button,
 } from "react-native"
 
+//importing the needed components
 import addUser from "../Data/addUsers.js"
 import Inputext from "../components/inputext"
 
-function LogInScreen({ onChangeScreen }) {
+//main signup screen funtion
+function signUpScreen({ onChangeScreen }) {
   const [currentUsername, setCurrentUsername] = useState("")
   const [currentFirst_name, setCurrentFirst_name] = useState("")
   const [currentLast_name, setCurrentLast_name] = useState("")
@@ -23,6 +24,7 @@ function LogInScreen({ onChangeScreen }) {
   const [currentPassword_confirmation, setCurrentPassword_confirmation] =
     useState("")
 
+  //an object that contains all the variables
   const [currentUser] = useState({
     username: "",
     first_name: "",
@@ -34,6 +36,7 @@ function LogInScreen({ onChangeScreen }) {
     password_confirmation: "",
   })
 
+  //variables for checking if the input is valid or not
   const [isValidEmail, setValidEmail] = useState(true)
   const [isValidPassword, setValidPassword] = useState(true)
   const [isValidPasswordConfirm, setValidPasswordConfirm] = useState(true)
@@ -41,18 +44,18 @@ function LogInScreen({ onChangeScreen }) {
   const [isValidUserName, setValidUserName] = useState(true)
   const [isValidFirstName, setValidFirstName] = useState(true)
   const [isValidLastName, setValidLastName] = useState(true)
+
+  //functions to validate each input
   function validateFirstName() {
     const firstNameRegex = /^[a-zA-Z]{4,}$/
     const firstNameIsValid = firstNameRegex.test(currentFirst_name)
     setValidFirstName(firstNameIsValid)
   }
-
   function validateLastName() {
     const lastNameRegex = /^[a-zA-Z]{4,}$/
     const lastNameIsValid = lastNameRegex.test(currentLast_name)
     setValidLastName(lastNameIsValid)
   }
-
   function validateUserName() {
     const userNameRegex = /^[^\s]{4,}$/
     const userNameIsValid = userNameRegex.test(currentUsername)
@@ -63,7 +66,6 @@ function LogInScreen({ onChangeScreen }) {
     const mobileIsValid = mobileRegex.test(currentMobile)
     setValidMobile(mobileIsValid)
   }
-
   function validatePasswordConfirm() {
     const passwordConfirmIsValid =
       currentPassword === currentPassword_confirmation
@@ -80,9 +82,8 @@ function LogInScreen({ onChangeScreen }) {
     setValidEmail(emailIsValid)
   }
 
-  //this part will be used after everything is set
-  //to put everything together and in the Users list
-
+  //functions to update the 'currentUser' object
+  //whenever the text changes in each input textbox
   function addUsername(Content) {
     setCurrentUsername(Content)
     currentUser.username = Content
@@ -112,6 +113,9 @@ function LogInScreen({ onChangeScreen }) {
     currentUser.password_confirmation = Content
   }
 
+  //a function to check for each input if its valid or not
+  //then go back to the log in screen if valid
+  //or send an alert message if not valid
   function CheckForViability() {
     if (
       isValidEmail &&
@@ -120,10 +124,17 @@ function LogInScreen({ onChangeScreen }) {
       isValidMobile &&
       isValidPassword &&
       isValidPasswordConfirm &&
-      isValidUserName
+      isValidUserName &&
+      currentUser.username != "" &&
+      currentUser.first_name != "" &&
+      currentUser.last_name != "" &&
+      currentUser.mobile != "" &&
+      currentUser.email != "" &&
+      currentUser.password != "" &&
+      currentUser.password_confirmation != ""
     ) {
       addUser(currentUser)
-      onChangeScreen("login")
+      onChangeScreen("login", currentUser)
     } else {
       Alert.alert("Invalid input", "some values are incorrect", [
         { text: "OK" },
@@ -131,6 +142,7 @@ function LogInScreen({ onChangeScreen }) {
     }
   }
 
+  //go to the login screen if the buttom is pressed
   function SignUp() {
     onChangeScreen("login")
   }
@@ -141,7 +153,13 @@ function LogInScreen({ onChangeScreen }) {
         style={{ flex: 1, paddingBottom: 20 }}
         behavior="padding"
       >
-        <View style={styles.rootContainer}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            marginTop: 100,
+          }}
+        >
           <Inputext
             placeholder="Username"
             onBlur={validateUserName}
@@ -249,28 +267,4 @@ function LogInScreen({ onChangeScreen }) {
   )
 }
 
-export default LogInScreen
-
-let color = "#B41FB2"
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 100,
-  },
-  infoInput: {
-    height: 50,
-    width: "90%",
-    fontSize: 32,
-    borderTopColor: color,
-    borderRightColor: color,
-    borderLeftColor: color,
-    borderBottomColor: "#50234F",
-    borderWidth: 4,
-    color: "blue",
-    marginVertical: 8,
-    paddingLeft: 10,
-    borderRadius: 10,
-  },
-})
+export default signUpScreen

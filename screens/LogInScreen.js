@@ -1,40 +1,47 @@
 import { useState } from "react"
 import {
   Text,
-  TextInput,
   Button,
   View,
-  StyleSheet,
   Pressable,
-  Alert,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native"
 
+//importing the needed components
 import Inputext from "../components/inputext"
 import checkUser from "../Data/checkUsers.js"
 
-function LogInScreen({ onChangeScreen }) {
-  const [currentUserName, setCurrentUserName] = useState("")
-  const [currentPassword, setCurrentPassword] = useState("")
-  const [Valid, setValid] = useState(true)
+//main login screen funtion
+function LogInScreen({ onChangeScreen, usr }) {
+  const [currentUserName, setCurrentUserName] = useState(usr.username) //a username variable
+  const [currentPassword, setCurrentPassword] = useState(usr.password) //a password variable
+  const [Valid, setValid] = useState(true) //a 'valid' variable to show a warning text if the username or password are wrong
   const [currentUser] = useState({
-    username: "",
-    password: "",
+    username: usr.username,
+    password: usr.password,
     user_type: "admin",
-  })
+  }) //a variable for the current user to send to 'checkUser' function
 
+  // a function to update the 'currentUser' variable whenever the text changes in the username text box
   function addUserName(Content) {
     setCurrentUserName(Content)
     currentUser.username = Content
   }
+
+  // a function to update the 'currentUser' variable whenever the text changes in the password text box
   function addPassword(Content) {
     setCurrentPassword(Content)
     currentUser.password = Content
   }
+
+  //a function to switch to the sign up screen if the button is pressed
   function SignUp() {
     onChangeScreen("signup")
   }
+
+  //a function to check for the user and go to the home page if its corrent
+  //and change the 'valid' variable to false if the username or password are wrong
   function HomePage() {
     if (checkUser(currentUser)) {
       onChangeScreen("homepage", currentUser.username)
@@ -49,7 +56,13 @@ function LogInScreen({ onChangeScreen }) {
         style={{ flex: 1, paddingBottom: 20 }}
         behavior="position"
       >
-        <View style={styles.rootContainer}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            marginTop: 100,
+          }}
+        >
           <Text>Log In</Text>
           <Inputext
             placeholder="Username"
@@ -90,27 +103,3 @@ function LogInScreen({ onChangeScreen }) {
 }
 
 export default LogInScreen
-
-let color = "#B41FB2"
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 100,
-  },
-  infoInput: {
-    height: 50,
-    width: "90%",
-    fontSize: 32,
-    borderTopColor: color,
-    borderRightColor: color,
-    borderLeftColor: color,
-    borderBottomColor: "#50234F",
-    borderWidth: 4,
-    color: "blue",
-    marginVertical: 8,
-    paddingLeft: 10,
-    borderRadius: 10,
-  },
-})

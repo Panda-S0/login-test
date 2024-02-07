@@ -1,19 +1,16 @@
-import { useState } from "react"
 import {
   Text,
-  TextInput,
   Button,
   View,
-  StyleSheet,
-  Pressable,
-  Alert,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native"
 
+//main homepage function
 function HomePageScreen({ onChangeScreen, usr }) {
+  //a function to go back to the log in screen when the button is pressd
   function LogIn() {
-    onChangeScreen("login")
+    onChangeScreen("login", { username: "", password: "" })
   }
 
   return (
@@ -22,7 +19,13 @@ function HomePageScreen({ onChangeScreen, usr }) {
         style={{ flex: 1, paddingBottom: 20 }}
         behavior="position"
       >
-        <View style={styles.rootContainer}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            marginTop: 100,
+          }}
+        >
           <Text>HOME PAGE</Text>
           <Text>you are {usr}</Text>
           <Button
@@ -38,27 +41,3 @@ function HomePageScreen({ onChangeScreen, usr }) {
 }
 
 export default HomePageScreen
-
-let color = "#B41FB2"
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 100,
-  },
-  infoInput: {
-    height: 50,
-    width: "90%",
-    fontSize: 32,
-    borderTopColor: color,
-    borderRightColor: color,
-    borderLeftColor: color,
-    borderBottomColor: "#50234F",
-    borderWidth: 4,
-    color: "blue",
-    marginVertical: 8,
-    paddingLeft: 10,
-    borderRadius: 10,
-  },
-})

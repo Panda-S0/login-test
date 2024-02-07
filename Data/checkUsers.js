@@ -1,5 +1,7 @@
+//import the users array
 import users from "./Users"
 
+//a function to check if the user exist then check if the password is corret
 function checkUser(usr) {
   for (let i = 0; i < users.length; i++) {
     if (usr.username == users[i].username) {
@@ -13,4 +15,5 @@ function checkUser(usr) {
   return 0
 }
 
+//exporting the function
 export default checkUser

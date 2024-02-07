@@ -1,5 +1,6 @@
 import { View, StyleSheet, TextInput, Text } from "react-native"
 
+//a component function for the text box
 function Inputext({
   style,
   placeholder,
@@ -28,10 +29,10 @@ function Inputext({
   )
 }
 
+//exporting the component
 export default Inputext
 
-let color = "#B41FB2"
-
+//styles for the component
 const styles = StyleSheet.create({
   viewall: {
     borderRadius: 10,
@@ -45,9 +46,9 @@ const styles = StyleSheet.create({
     height: "65%",
     width: "100%",
     fontSize: 13,
-    borderTopColor: color,
-    borderRightColor: color,
-    borderLeftColor: color,
+    borderTopColor: "#B41FB2",
+    borderRightColor: "#B41FB2",
+    borderLeftColor: "#B41FB2",
     borderBottomColor: "#50234F",
     borderWidth: 4,
     color: "blue",
