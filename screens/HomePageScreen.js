@@ -1,4 +1,5 @@
 import {
+  StyleSheet,
   Text,
   Button,
   View,
@@ -14,22 +15,16 @@ function HomePageScreen({ onChangeScreen, usr }) {
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={styles.mainView}>
       <KeyboardAvoidingView
         style={{ flex: 1, paddingBottom: 20 }}
         behavior="position"
       >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            marginTop: 100,
-          }}
-        >
+        <View style={styles.innerView}>
           <Text>HOME PAGE</Text>
           <Text>you are {usr}</Text>
           <Button
-            style={{ marginTop: 100 }}
+            style={styles.button}
             color="#ff5c5c"
             title="Sign Out"
             onPress={LogIn}
@@ -41,3 +36,15 @@ function HomePageScreen({ onChangeScreen, usr }) {
 }
 
 export default HomePageScreen
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+  },
+  innerView: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 100,
+  },
+  button: { marginTop: 100 },
+})

@@ -31,9 +31,13 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffccee" }}>
-        {Screen}
-      </SafeAreaView>
+      <SafeAreaView style={styles.mainView}>{Screen}</SafeAreaView>
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+  },
+})

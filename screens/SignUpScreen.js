@@ -1,5 +1,6 @@
 import { useState } from "react"
 import {
+  StyleSheet,
   Alert,
   Text,
   View,
@@ -12,6 +13,8 @@ import {
 //importing the needed components
 import addUser from "../Data/addUsers.js"
 import Inputext from "../components/inputext"
+import Inpupass from "../components/inputpass.js"
+import Redtext from "../components/redtext.js"
 
 //main signup screen funtion
 function signUpScreen({ onChangeScreen }) {
@@ -45,14 +48,26 @@ function signUpScreen({ onChangeScreen }) {
   const [isValidFirstName, setValidFirstName] = useState(true)
   const [isValidLastName, setValidLastName] = useState(true)
 
+  //to show and hide the password and password confirmation
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+
+  const handleTogglePasswordConfirmVisibility = () => {
+    setShowPasswordConfirm(!showPasswordConfirm)
+  }
+
   //functions to validate each input
   function validateFirstName() {
-    const firstNameRegex = /^[a-zA-Z]{4,}$/
+    const firstNameRegex = /^[a-zA-Z]{1,32}$/
     const firstNameIsValid = firstNameRegex.test(currentFirst_name)
     setValidFirstName(firstNameIsValid)
   }
   function validateLastName() {
-    const lastNameRegex = /^[a-zA-Z]{4,}$/
+    const lastNameRegex = /^[a-zA-Z]{1,32}$/
     const lastNameIsValid = lastNameRegex.test(currentLast_name)
     setValidLastName(lastNameIsValid)
   }
@@ -144,22 +159,16 @@ function signUpScreen({ onChangeScreen }) {
 
   //go to the login screen if the buttom is pressed
   function SignUp() {
-    onChangeScreen("login")
+    onChangeScreen("login", { username: "", password: "" })
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={styles.mainView}>
       <KeyboardAvoidingView
-        style={{ flex: 1, paddingBottom: 20 }}
+        style={styles.keyboardavoidingView}
         behavior="padding"
       >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            marginTop: 100,
-          }}
-        >
+        <View style={styles.innerView}>
           <Inputext
             placeholder="Username"
             onBlur={validateUserName}
@@ -167,27 +176,22 @@ function signUpScreen({ onChangeScreen }) {
             value={currentUsername}
           />
           {!isValidUserName && (
-            <Text style={{ color: "red" }}>
-              the username cant have spaces and should be at least 4
-              characters
-            </Text>
+            <Redtext
+              text={
+                "the username cant have spaces and should be at least 4 characters"
+              }
+            />
           )}
-          <View
-            style={{
-              width: "90%",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+          <View style={styles.namesView}>
             <Inputext
-              style={{ width: "45%" }}
+              style={styles.namesTextBox}
               placeholder="name"
               onBlur={validateFirstName}
               funk={addFirst_name}
               value={currentFirst_name}
             />
             <Inputext
-              style={{ width: "45%" }}
+              style={styles.namesTextBox}
               placeholder="surname"
               onBlur={validateLastName}
               funk={addLast_name}
@@ -195,10 +199,11 @@ function signUpScreen({ onChangeScreen }) {
             />
           </View>
           {(!isValidFirstName || !isValidLastName) && (
-            <Text style={{ color: "red" }}>
-              the name and surname should be only letters and contain at
-              least 4 characters
-            </Text>
+            <Redtext
+              text={
+                "the name and surname should be only letters and be less than 32 characters"
+              }
+            />
           )}
           <Inputext
             placeholder="Phone numebr"
@@ -209,10 +214,11 @@ function signUpScreen({ onChangeScreen }) {
             value={currentMobile}
           />
           {!isValidMobile && (
-            <Text style={{ color: "red" }}>
-              should be a real phone number, starts with 0 and has 11
-              digits
-            </Text>
+            <Redtext
+              text={
+                "should be a real phone number, starts with 0 and has 11 digits"
+              }
+            />
           )}
           <Inputext
             placeholder="email"
@@ -221,45 +227,45 @@ function signUpScreen({ onChangeScreen }) {
             funk={addEmail}
             value={currentEmail}
           />
-          {!isValidEmail && (
-            <Text style={{ color: "red" }}>Invalid email address</Text>
-          )}
+          {!isValidEmail && <Redtext text={"Invalid email address"} />}
 
-          <Inputext
+          <Inpupass
+            secureTextEntry={!showPassword}
             placeholder="password"
             onBlur={validatePassword}
             funk={addPassword}
             value={currentPassword}
+            showPassword={showPassword}
+            onPress={handleTogglePasswordVisibility}
           />
           {!isValidPassword && (
-            <Text style={{ color: "red" }}>
-              Password should contain at least one upper case, one lower
-              case, one number, and at least 8 charactes long
-            </Text>
+            <Redtext
+              text={
+                "Password should contain at least one upper case, one lower case, one number, and at least 8 charactes long"
+              }
+            />
           )}
-          <Inputext
+          <Inpupass
+            secureTextEntry={!showPasswordConfirm}
             placeholder="confirm password"
             onBlur={validatePasswordConfirm}
             funk={addPassword_confirmation}
             value={currentPassword_confirmation}
+            showPassword={showPasswordConfirm}
+            onPress={handleTogglePasswordConfirmVisibility}
           />
           {!isValidPasswordConfirm && (
-            <Text style={{ color: "red" }}>
-              Confirm Password should be the same as the password
-            </Text>
+            <Redtext
+              text={"Confirm Password should be the same as the password"}
+            />
           )}
           <Pressable
             onPress={CheckForViability}
-            android_ripple={{ color: "red" }}
-            style={{
-              marginTop: 10,
-              padding: 10,
-              backgroundColor: "pink",
-            }}
+            android_ripple={styles.riblClr}
+            style={styles.presableView}
           >
             <Text>Sign Up</Text>
           </Pressable>
-
           <Button title="go back to the log in" onPress={SignUp} />
         </View>
       </KeyboardAvoidingView>
@@ -268,3 +274,29 @@ function signUpScreen({ onChangeScreen }) {
 }
 
 export default signUpScreen
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+  },
+  keyboardavoidingView: { flex: 1, paddingBottom: 20 },
+  innerView: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 100,
+  },
+  namesView: {
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  namesTextBox: {
+    width: "45%",
+  },
+  presableView: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "orange",
+  },
+  riblClr: { color: "white" },
+})

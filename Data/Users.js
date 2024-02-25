@@ -10,6 +10,10 @@ const users = [
     password: "password",
     password_confirmation: "password",
   },
+  {
+    username: "test",
+    password: "test",
+  },
 ]
 //export it
 export default users

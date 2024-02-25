@@ -10,11 +10,13 @@ function Inputext({
   styleTextBox,
   maxLength,
   keyboardType,
+  secureTextEntry,
 }) {
   return (
     <View style={[styles.viewall, style]}>
       <Text style={{ height: "30%" }}>{placeholder}</Text>
       <TextInput
+        secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         maxLength={maxLength}
         onChangeText={funk}
@@ -46,12 +48,7 @@ const styles = StyleSheet.create({
     height: "65%",
     width: "100%",
     fontSize: 13,
-    borderTopColor: "#B41FB2",
-    borderRightColor: "#B41FB2",
-    borderLeftColor: "#B41FB2",
-    borderBottomColor: "#50234F",
     borderWidth: 4,
-    color: "blue",
     borderRadius: 10,
   },
 })

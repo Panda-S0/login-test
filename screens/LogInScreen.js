@@ -1,9 +1,9 @@
 import { useState } from "react"
 import {
+  StyleSheet,
   Text,
   Button,
   View,
-  Pressable,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native"
@@ -11,6 +11,8 @@ import {
 //importing the needed components
 import Inputext from "../components/inputext"
 import checkUser from "../Data/checkUsers.js"
+import Inpupass from "../components/inputpass.js"
+import Redtext from "../components/redtext.js"
 
 //main login screen funtion
 function LogInScreen({ onChangeScreen, usr }) {
@@ -22,6 +24,13 @@ function LogInScreen({ onChangeScreen, usr }) {
     password: usr.password,
     user_type: "admin",
   }) //a variable for the current user to send to 'checkUser' function
+
+  //to show and hide the password
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   // a function to update the 'currentUser' variable whenever the text changes in the username text box
   function addUserName(Content) {
@@ -51,51 +60,29 @@ function LogInScreen({ onChangeScreen, usr }) {
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={styles.mainView}>
       <KeyboardAvoidingView
-        style={{ flex: 1, paddingBottom: 20 }}
+        style={styles.keyboardavoidingView}
         behavior="position"
       >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            marginTop: 100,
-          }}
-        >
+        <View style={styles.innerView}>
           <Text>Log In</Text>
           <Inputext
             placeholder="Username"
             funk={addUserName}
             value={currentUserName}
           />
-          <Inputext
+          <Inpupass
+            secureTextEntry={!showPassword}
             placeholder="Password"
             funk={addPassword}
             value={currentPassword}
+            showPassword={showPassword}
+            onPress={handleTogglePasswordVisibility}
           />
-          {!Valid && (
-            <Text style={{ color: "red" }}>
-              wrong username or password
-            </Text>
-          )}
-          <Button
-            style={{ marginTop: 100 }}
-            color="#ff5c5c"
-            title="Log In"
-            onPress={HomePage}
-          ></Button>
-          <Pressable
-            onPress={SignUp}
-            android_ripple={{ color: "red" }}
-            style={{
-              marginTop: 10,
-              padding: 10,
-              backgroundColor: "pink",
-            }}
-          >
-            <Text>Make an account</Text>
-          </Pressable>
+          {!Valid && <Redtext text={"wrong username or password"} />}
+          <Button color="orange" title="Log In" onPress={HomePage} />
+          <Button title="Make an account" onPress={SignUp} />
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -103,3 +90,15 @@ function LogInScreen({ onChangeScreen, usr }) {
 }
 
 export default LogInScreen
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+  },
+  keyboardavoidingView: { flex: 1, paddingBottom: 20 },
+  innerView: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 100,
+  },
+})
