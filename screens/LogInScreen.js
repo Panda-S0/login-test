@@ -15,13 +15,14 @@ import Inpupass from "../components/inputpass.js"
 import Redtext from "../components/redtext.js"
 
 //main login screen funtion
-function LogInScreen({ onChangeScreen, usr }) {
-  const [currentUserName, setCurrentUserName] = useState(usr.username) //a username variable
-  const [currentPassword, setCurrentPassword] = useState(usr.password) //a password variable
+function LogInScreen({ navigation }) {
+  //pass the username and pass from sign up to write them when singed up
+  const [currentUserName, setCurrentUserName] = useState("") //a username variable
+  const [currentPassword, setCurrentPassword] = useState("") //a password variable
   const [Valid, setValid] = useState(true) //a 'valid' variable to show a warning text if the username or password are wrong
   const [currentUser] = useState({
-    username: usr.username,
-    password: usr.password,
+    username: "",
+    password: "",
     user_type: "admin",
   }) //a variable for the current user to send to 'checkUser' function
 
@@ -46,14 +47,14 @@ function LogInScreen({ onChangeScreen, usr }) {
 
   //a function to switch to the sign up screen if the button is pressed
   function SignUp() {
-    onChangeScreen("signup")
+    navigation.navigate("SignUpScreen")
   }
 
   //a function to check for the user and go to the home page if its corrent
   //and change the 'valid' variable to false if the username or password are wrong
   function HomePage() {
     if (checkUser(currentUser)) {
-      onChangeScreen("homepage", currentUser.username)
+      navigation.navigate("HomePageScreen", { usr: currentUser.username })
     } else {
       setValid(false)
     }

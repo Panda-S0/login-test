@@ -7,7 +7,6 @@ import {
   Pressable,
   KeyboardAvoidingView,
   ScrollView,
-  Button,
 } from "react-native"
 
 //importing the needed components
@@ -17,7 +16,7 @@ import Inpupass from "../components/inputpass.js"
 import Redtext from "../components/redtext.js"
 
 //main signup screen funtion
-function signUpScreen({ onChangeScreen }) {
+function SignUpScreen({ navigation, route }) {
   const [currentUsername, setCurrentUsername] = useState("")
   const [currentFirst_name, setCurrentFirst_name] = useState("")
   const [currentLast_name, setCurrentLast_name] = useState("")
@@ -149,17 +148,13 @@ function signUpScreen({ onChangeScreen }) {
       currentUser.password_confirmation != ""
     ) {
       addUser(currentUser)
-      onChangeScreen("login", currentUser)
+      navigation.navigate("LogInScreen", { passedUser: currentUser })
+      //onChangeScreen("login", currentUser)
     } else {
       Alert.alert("Invalid input", "some values are incorrect", [
         { text: "OK" },
       ])
     }
-  }
-
-  //go to the login screen if the buttom is pressed
-  function SignUp() {
-    onChangeScreen("login", { username: "", password: "" })
   }
 
   return (
@@ -266,14 +261,13 @@ function signUpScreen({ onChangeScreen }) {
           >
             <Text>Sign Up</Text>
           </Pressable>
-          <Button title="go back to the log in" onPress={SignUp} />
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
   )
 }
 
-export default signUpScreen
+export default SignUpScreen
 
 const styles = StyleSheet.create({
   mainView: {

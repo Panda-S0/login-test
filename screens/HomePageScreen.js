@@ -8,10 +8,12 @@ import {
 } from "react-native"
 
 //main homepage function
-function HomePageScreen({ onChangeScreen, usr }) {
+function HomePageScreen({ navigation, route }) {
+  let usr = route.params.usr
   //a function to go back to the log in screen when the button is pressd
   function LogIn() {
-    onChangeScreen("login", { username: "", password: "" })
+    navigation.navigate("LogInScreen")
+    // onChangeScreen("login", { username: "", password: "" })
   }
 
   return (
