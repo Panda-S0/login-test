@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import { useState } from "react"
-import { StyleSheet, SafeAreaView } from "react-native"
+import { View, Text, StyleSheet, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import LogInScreen from "./screens/LogInScreen"
 import SignUpScreen from "./screens/SignUpScreen"
 import HomePageScreen from "./screens/HomePageScreen"
+import ProductPreviewScreen from "./screens/ProductPreviewScreen"
 
 const Stack = createNativeStackNavigator()
 
@@ -31,6 +32,14 @@ export default function App() {
   if (screen == "homepage") {
     Screen = <HomePageScreen onChangeScreen={ChangeScreen} usr={user} />
   }
+  if (screen == "ProductPreviewScreen") {
+    Screen = (
+      <ProductPreviewScreen
+        onChangeScreen={ChangeScreen}
+        product={product}
+      />
+    )
+  }
 
   return (
     <>
@@ -43,9 +52,17 @@ export default function App() {
             <Stack.Screen
               name="HomePageScreen"
               component={HomePageScreen}
-              options={{
-                headerBackVisible: false,
-              }}
+              options={({ route }) => ({
+                headerRight: () => (
+                  <View style={{ marginRight: 10 }}>
+                    <Text>{route.params?.usr}</Text>
+                  </View>
+                ),
+              })}
+            />
+            <Stack.Screen
+              name="ProductPreviewScreen"
+              component={ProductPreviewScreen}
             />
           </Stack.Navigator>
         </SafeAreaView>

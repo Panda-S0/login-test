@@ -149,7 +149,6 @@ function SignUpScreen({ navigation, route }) {
     ) {
       addUser(currentUser)
       navigation.navigate("LogInScreen", { passedUser: currentUser })
-      //onChangeScreen("login", currentUser)
     } else {
       Alert.alert("Invalid input", "some values are incorrect", [
         { text: "OK" },

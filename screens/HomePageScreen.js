@@ -1,52 +1,26 @@
-import {
-  StyleSheet,
-  Text,
-  Button,
-  View,
-  KeyboardAvoidingView,
-  ScrollView,
-} from "react-native"
+import { StyleSheet, FlatList } from "react-native"
+
+import products from "../Data/products"
+import productMiniView from "../components/productComponents"
 
 //main homepage function
-function HomePageScreen({ navigation, route }) {
-  let usr = route.params.usr
-  //a function to go back to the log in screen when the button is pressd
-  function LogIn() {
-    navigation.navigate("LogInScreen")
-    // onChangeScreen("login", { username: "", password: "" })
-  }
-
+function HomePageScreen({ navigation }) {
   return (
-    <ScrollView style={styles.mainView}>
-      <KeyboardAvoidingView
-        style={{ flex: 1, paddingBottom: 20 }}
-        behavior="position"
-      >
-        <View style={styles.innerView}>
-          <Text>HOME PAGE</Text>
-          <Text>you are {usr}</Text>
-          <Button
-            style={styles.button}
-            color="#ff5c5c"
-            title="Sign Out"
-            onPress={LogIn}
-          ></Button>
-        </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
+    <FlatList
+      data={products}
+      renderItem={(props) =>
+        productMiniView({ ...props, navigation: navigation })
+      }
+      keyExtractor={(item) => item.id.toString()}
+      style={styles.flatStyle}
+    />
   )
 }
 
 export default HomePageScreen
 
 const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
+  flatStyle: {
+    width: "100%",
   },
-  innerView: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 100,
-  },
-  button: { marginTop: 100 },
 })

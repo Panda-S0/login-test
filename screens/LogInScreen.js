@@ -54,6 +54,7 @@ function LogInScreen({ navigation }) {
   //and change the 'valid' variable to false if the username or password are wrong
   function HomePage() {
     if (checkUser(currentUser)) {
+      setValid(true)
       navigation.navigate("HomePageScreen", { usr: currentUser.username })
     } else {
       setValid(false)
