@@ -14,6 +14,7 @@ import addUser from "../Data/addUsers.js"
 import Inputext from "../components/inputext"
 import Inpupass from "../components/inputpass.js"
 import Redtext from "../components/redtext.js"
+import CoolButton from "../components/CoolButton.js"
 
 //main signup screen funtion
 function SignUpScreen({ navigation, route }) {
@@ -71,7 +72,7 @@ function SignUpScreen({ navigation, route }) {
     setValidLastName(lastNameIsValid)
   }
   function validateUserName() {
-    const userNameRegex = /^[^\s]{4,}$/
+    const userNameRegex = /^[^\s]{3,}$/
     const userNameIsValid = userNameRegex.test(currentUsername)
     setValidUserName(userNameIsValid)
   }
@@ -253,13 +254,8 @@ function SignUpScreen({ navigation, route }) {
               text={"Confirm Password should be the same as the password"}
             />
           )}
-          <Pressable
-            onPress={CheckForViability}
-            android_ripple={styles.riblClr}
-            style={styles.presableView}
-          >
-            <Text>Sign Up</Text>
-          </Pressable>
+          <View style={{ height: 40 }} />
+          <CoolButton onPress={CheckForViability}>Sign Up</CoolButton>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -274,6 +270,7 @@ const styles = StyleSheet.create({
   },
   keyboardavoidingView: { flex: 1, paddingBottom: 20 },
   innerView: {
+    padding: 25,
     flex: 1,
     alignItems: "center",
     marginTop: 100,

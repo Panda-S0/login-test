@@ -1,4 +1,13 @@
-import { View, StyleSheet, TextInput, Text, Button } from "react-native"
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Text,
+  Button,
+  Pressable,
+} from "react-native"
+import { Ionicons } from "@expo/vector-icons"
+import colors from "../assets/colors"
 
 //a component function for the text box
 function Inpupass({
@@ -20,28 +29,51 @@ function Inpupass({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-end",
+        width: "90%",
+        marginVertical: 4,
       }}
     >
       <View style={styles.viewall}>
-        <Text style={{ height: "30%" }}>{placeholder}</Text>
-        <TextInput
-          secureTextEntry={secureTextEntry}
-          keyboardType={keyboardType}
-          maxLength={maxLength}
-          onChangeText={funk}
-          onBlur={onBlur}
-          style={[styles.infoInput, styleTextBox]}
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder={placeholder}
-          value={value}
-        ></TextInput>
-      </View>
-      <View style={{ marginBottom: 10, flex: 0.65 }}>
-        <Button
-          title={showPassword ? "Hide" : "Show"}
-          onPress={onPress}
-        />
+        <View style={styles.textveu}>
+          <Text>
+            <Ionicons
+              name={"lock-closed-outline"}
+              size={24}
+              color="white"
+            />
+          </Text>
+          <TextInput
+            secureTextEntry={secureTextEntry}
+            keyboardType={keyboardType}
+            maxLength={maxLength}
+            onChangeText={funk}
+            onBlur={onBlur}
+            style={[styles.infoInput, styleTextBox]}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder={placeholder}
+            placeholderTextColor="#cccccc"
+            value={value}
+          ></TextInput>
+        </View>
+        <View
+          style={{
+            width: 40,
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <Pressable onPress={onPress}>
+            <Text>
+              <Ionicons
+                name={showPassword ? "eye-outline" : "eye-off-outline"}
+                size={24}
+                color="#cccccc"
+              />
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   )
@@ -53,18 +85,28 @@ export default Inpupass
 //styles for the component
 const styles = StyleSheet.create({
   viewall: {
-    borderRadius: 10,
-    height: 70,
-    width: "75%",
-    marginVertical: 4,
-    justifyContent: "space-between",
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
   },
   infoInput: {
-    paddingLeft: 10,
-    height: "65%",
-    width: "100%",
+    flex: 1,
     fontSize: 13,
+    color: "white",
+    paddingLeft: 10,
+    height: "100%",
+  },
+  textveu: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 15,
+    height: 60,
+    flex: 1,
     borderWidth: 4,
-    borderRadius: 10,
+    borderRadius: 1000,
+    borderColor: colors.background[1],
+    backgroundColor: colors.background[2],
   },
 })

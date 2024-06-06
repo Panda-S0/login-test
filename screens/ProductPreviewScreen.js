@@ -94,6 +94,7 @@ function ProductPreviewScreen({ route }) {
               multiline
               style={styles.reviewText}
               placeholder="write review"
+              placeholderTextColor={"white"}
             ></TextInput>
             <Button
               color="orange"
@@ -105,11 +106,11 @@ function ProductPreviewScreen({ route }) {
 
         {/* Reviews */}
         <View style={styles.item}>
-          <Text>
+          <Text style={styles.text}>
             {reviewlist[0].review}
             {"\n"}
           </Text>
-          <Text>
+          <Text style={styles.text}>
             {reviewlist[1].review}
             {"\n"}
           </Text>
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 1,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "white",
     marginBottom: 10,
   },
   image: {
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
   item: {
     width: "100%",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "white",
     padding: 10,
     marginBottom: 10,
   },
@@ -185,16 +186,20 @@ const styles = StyleSheet.create({
   },
   nametext: {
     fontSize: 32,
+    color: "white",
   },
   text: {
     fontSize: 16,
+    color: "white",
   },
   presstext: {
     color: "blue",
     fontSize: 16,
+    color: "white",
   },
   textstrat: {
     fontSize: 32,
+    color: "white",
   },
   reviewText: {
     paddingLeft: 10,
@@ -203,6 +208,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 4,
     borderRadius: 10,
+    borderColor: "white",
+    color: "white",
   },
   flatStyle: {
     width: "100%",

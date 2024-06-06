@@ -13,6 +13,11 @@ import Inputext from "../components/inputext"
 import checkUser from "../Data/checkUsers.js"
 import Inpupass from "../components/inputpass.js"
 import Redtext from "../components/redtext.js"
+import colors from "../assets/colors.js"
+import CoolButton from "../components/CoolButton.js"
+
+const space =
+  "                                                                                                    "
 
 //main login screen funtion
 function LogInScreen({ navigation }) {
@@ -68,7 +73,7 @@ function LogInScreen({ navigation }) {
         behavior="position"
       >
         <View style={styles.innerView}>
-          <Text>Log In</Text>
+          <Text style={styles.texts}>Log In</Text>
           <Inputext
             placeholder="Username"
             funk={addUserName}
@@ -82,9 +87,29 @@ function LogInScreen({ navigation }) {
             showPassword={showPassword}
             onPress={handleTogglePasswordVisibility}
           />
-          {!Valid && <Redtext text={"wrong username or password"} />}
-          <Button color="orange" title="Log In" onPress={HomePage} />
-          <Button title="Make an account" onPress={SignUp} />
+          {!Valid && (
+            <Redtext
+              text={"wrong username or password"}
+              styler={{ marginBottom: 10 }}
+            />
+          )}
+          <View style={{ height: 20 }}></View>
+          <CoolButton onPress={HomePage}>Log in</CoolButton>
+          <View style={{ height: 40 }} />
+          <View style={styles.textcontainer}>
+            <Text style={styles.saparatext}>{space}</Text>
+            <Text style={{ color: "#cccccc" }}>
+              Don't have an account
+            </Text>
+            <Text style={styles.saparatext}>{space}</Text>
+          </View>
+          <CoolButton
+            onPress={SignUp}
+            btnclr={"white"}
+            txtclr={colors.background[6]}
+          >
+            Sign up
+          </CoolButton>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -99,8 +124,18 @@ const styles = StyleSheet.create({
   },
   keyboardavoidingView: { flex: 1, paddingBottom: 20 },
   innerView: {
-    flex: 1,
     alignItems: "center",
     marginTop: 100,
+  },
+  texts: { color: "white", fontSize: 18 },
+  saparatext: {
+    color: "#cccccc",
+    textDecorationLine: "line-through",
+    flex: 1,
+  },
+  textcontainer: {
+    flexDirection: "row",
+    padding: 20,
+    alignItems: "center",
   },
 })

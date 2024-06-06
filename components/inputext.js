@@ -1,4 +1,6 @@
 import { View, StyleSheet, TextInput, Text } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
+import colors from "../assets/colors"
 
 //a component function for the text box
 function Inputext({
@@ -14,7 +16,9 @@ function Inputext({
 }) {
   return (
     <View style={[styles.viewall, style]}>
-      <Text style={{ height: "30%" }}>{placeholder}</Text>
+      <Text>
+        <Ionicons name={"person-outline"} size={24} color="white" />
+      </Text>
       <TextInput
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
@@ -25,6 +29,7 @@ function Inputext({
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={placeholder}
+        placeholderTextColor="#cccccc"
         value={value}
       ></TextInput>
     </View>
@@ -37,18 +42,23 @@ export default Inputext
 //styles for the component
 const styles = StyleSheet.create({
   viewall: {
-    borderRadius: 10,
-    height: 70,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 15,
+    height: 60,
     width: "90%",
     marginVertical: 4,
-    justifyContent: "space-between",
+    borderWidth: 4,
+    borderRadius: 1000,
+    borderColor: colors.background[1],
+    backgroundColor: colors.background[2],
   },
   infoInput: {
+    overflow: "hidden",
     paddingLeft: 10,
-    height: "65%",
-    width: "100%",
+    flex: 1,
     fontSize: 13,
-    borderWidth: 4,
-    borderRadius: 10,
+    color: "white",
+    height: "100%",
   },
 })

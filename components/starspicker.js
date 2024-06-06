@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   },
   textstrat: {
     fontSize: 32,
+    color: "white",
   },
 })

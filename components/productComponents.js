@@ -71,12 +71,14 @@ const styles = StyleSheet.create({
   },
   name: {
     width: "100%",
-    fontSize: 48,
+    fontSize: 18,
     marginBottom: 5,
+    color: "white",
   },
   text: {
     fontSize: 24,
     marginRight: 10,
+    color: "white",
   },
   coloredStar: {
     color: "gold",

@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList } from "react-native"
+import { StyleSheet, FlatList, View } from "react-native"
 
 import products from "../Data/products"
 import productMiniView from "../components/productComponents"
