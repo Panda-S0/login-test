@@ -21,6 +21,7 @@ export default HomePageScreen
 
 const styles = StyleSheet.create({
   flatStyle: {
+    paddingTop: 10,
     width: "100%",
   },
 })

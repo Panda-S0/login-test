@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native"
-
+import colors from "../assets/colors"
 //a component function for changing the stars count
 
 function Starspicker({ rate, starcounter }) {
@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
   },
   textstrat: {
     fontSize: 32,
-    color: "white",
+    color: colors.background[5],
   },
 })

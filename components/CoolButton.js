@@ -1,17 +1,8 @@
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  Text,
-  Button,
-  Pressable,
-} from "react-native"
-import { Ionicons } from "@expo/vector-icons"
+import { StyleSheet, Text, Pressable } from "react-native"
 import colors from "../assets/colors"
 
 //a component function for the text box
 function CoolButton({ children, onPress, btnclr, txtclr }) {
-  console.log(btnclr)
   return (
     <Pressable
       onPress={onPress}
@@ -35,7 +26,6 @@ export default CoolButton
 //styles for the component
 const styles = StyleSheet.create({
   viewall: {
-    flex: 1,
     height: 60,
     width: "90%",
     borderRadius: 1000,

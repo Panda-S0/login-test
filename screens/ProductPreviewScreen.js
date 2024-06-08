@@ -17,6 +17,8 @@ import reviewView from "../components/reviewComponents"
 import Starspicker from "../components/starspicker"
 import addReview from "../Data/addReview"
 import checkRate from "../Data/checkRate"
+import colors from "../assets/colors"
+import CoolButton from "../components/CoolButton.js"
 
 //Product Preview Screen
 function ProductPreviewScreen({ route }) {
@@ -49,10 +51,23 @@ function ProductPreviewScreen({ route }) {
     setWrittenReview("")
   }
 
+  function hexToRgbA(hex) {
+    var c
+    c = hex.substring(1).split("")
+    c = "0x" + c.join("")
+    return [
+      "rgba(" +
+        [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
+        ",0)",
+      "rgba(" +
+        [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
+        ",1)",
+    ]
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
-        {/* Photo */}
         <View
           style={[styles.photoContainer, { aspectRatio: aspectRatio }]}
         >
@@ -69,14 +84,22 @@ function ProductPreviewScreen({ route }) {
         </View>
 
         {/* Name */}
-        <View style={styles.item}>
-          <Text style={styles.nametext}>{product.name}</Text>
+        <View style={styles.namenPrice}>
+          <Text style={[styles.nametext, styles.textColor]}>
+            {product.name}
+          </Text>
+          <Text style={[styles.nametext, styles.textColor]}>
+            {product.price}
+            <Text style={styles.coloredMoney}> $</Text>
+          </Text>
         </View>
 
         {/* Description */}
         <View style={styles.item}>
-          <Text style={styles.text}>
-            description:{"\n"}
+          <Text style={[styles.text, styles.textColor]}>
+            <Text style={[styles.text, styles.titleColor]}>
+              description:{"\n"}
+            </Text>
             {product.description}
           </Text>
         </View>
@@ -85,37 +108,43 @@ function ProductPreviewScreen({ route }) {
         <View style={styles.item}>
           <View style={styles.ratingContainer}>
             <Starspicker rate={product.rate} starcounter={setStarCount} />
-            <Text style={styles.textstrat}>{Rate}</Text>
+            <Text style={[styles.textstrat, styles.textColor]}>
+              {Rate}
+            </Text>
           </View>
           <View style={styles.textBoxButtonContainer}>
             <TextInput
               value={writtenReview}
               onChangeText={WritingReview}
               multiline
-              style={styles.reviewText}
+              style={[styles.reviewText, styles.textColor]}
               placeholder="write review"
-              placeholderTextColor={"white"}
+              placeholderTextColor={colors.background[5]}
             ></TextInput>
-            <Button
-              color="orange"
-              title="submit"
+            <CoolButton
               onPress={addingReview}
-            />
+              btnclr={colors.background[2]}
+              txtclr={"white"}
+            >
+              submit
+            </CoolButton>
           </View>
         </View>
 
         {/* Reviews */}
         <View style={styles.item}>
-          <Text style={styles.text}>
+          <Text style={[styles.text, styles.textColor]}>
             {reviewlist[0].review}
             {"\n"}
           </Text>
-          <Text style={styles.text}>
+          <Text style={[styles.text, styles.textColor]}>
             {reviewlist[1].review}
             {"\n"}
           </Text>
           <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Text style={styles.presstext}>Show more reviews.</Text>
+            <Text style={[styles.presstext, styles.textColor]}>
+              Show more reviews.
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -136,15 +165,14 @@ function ProductPreviewScreen({ route }) {
               />
               <View>
                 <LinearGradient
-                  colors={[
-                    "rgba(255, 255, 255, 0)",
-                    "rgba(255, 255, 255, 1)",
-                  ]}
+                  colors={hexToRgbA(colors.background[1])}
                   style={styles.fade}
                 ></LinearGradient>
               </View>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Text style={styles.presstext}>Hide reviews.</Text>
+                <Text style={[styles.presstext, styles.textColor]}>
+                  Hide reviews.
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -159,24 +187,33 @@ export default ProductPreviewScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    margin: 20,
+    padding: 10,
+    borderRadius: 30,
+    backgroundColor: colors.background[0],
   },
   photoContainer: {
     width: "100%",
     aspectRatio: 1,
-    borderWidth: 1,
-    borderColor: "white",
+    borderRadius: 30,
     marginBottom: 10,
+    overflow: "hidden",
   },
   image: {
     width: "100%",
     height: "100%",
   },
+  namenPrice: {
+    width: "100%",
+    paddingHorizontal: 20,
+    marginBottom: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   item: {
     width: "100%",
-    borderWidth: 1,
-    borderColor: "white",
-    padding: 10,
+    paddingHorizontal: 20,
     marginBottom: 10,
   },
   ratingContainer: {
@@ -184,32 +221,43 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: "space-between",
   },
+  textColor: {
+    color: colors.background[5],
+  },
+  titleColor: {
+    color: colors.background[6],
+    fontSize: 24,
+    fontWeight: "bold",
+  },
   nametext: {
     fontSize: 32,
-    color: "white",
+    fontWeight: "bold",
   },
   text: {
     fontSize: 16,
-    color: "white",
   },
   presstext: {
-    color: "blue",
     fontSize: 16,
-    color: "white",
+    fontWeight: "bold",
   },
   textstrat: {
     fontSize: 32,
-    color: "white",
+  },
+  coloredMoney: {
+    color: "green",
+  },
+  textBoxButtonContainer: {
+    alignItems: "center",
+    height: 120,
+    justifyContent: "space-around",
   },
   reviewText: {
-    paddingLeft: 10,
-    marginRight: 10,
+    paddingHorizontal: 10,
     width: "75%",
     fontSize: 16,
     borderWidth: 4,
     borderRadius: 10,
-    borderColor: "white",
-    color: "white",
+    borderColor: colors.background[5],
   },
   flatStyle: {
     width: "100%",
@@ -223,7 +271,7 @@ const styles = StyleSheet.create({
   modalContent: {
     width: "90%",
     height: "70%",
-    backgroundColor: "white",
+    backgroundColor: colors.background[1],
     padding: 20,
     borderRadius: 20,
     elevation: 5, // For Android shadow

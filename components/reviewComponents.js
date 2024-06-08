@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
+import colors from "../assets/colors"
 
 //a component function for the reviews view
 function reviewView({ item }) {
@@ -42,6 +43,6 @@ const styles = StyleSheet.create({
   container: { marginBottom: 30 },
   text: {
     fontSize: 20,
-    color: "white",
+    color: colors.background[5],
   },
 })

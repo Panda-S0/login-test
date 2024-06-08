@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native"
 import checkRate from "../Data/checkRate"
+import colors from "../assets/colors"
 
 //a component function for the product mini view
 function productMiniView({ item, navigation }) {
@@ -19,23 +20,25 @@ function productMiniView({ item, navigation }) {
 
   return (
     <View style={styles.itemContainer}>
+      <View style={styles.textContainer}>
+        <Text style={styles.name}>{item.name}</Text>
+        <View style={styles.textRow}>
+          <Text style={styles.text}>
+            {item.price}
+            <Text style={styles.coloredMoney}> $</Text>
+          </Text>
+          <Text style={styles.text}>
+            {item.rate}
+            <Text style={styles.coloredStar}>★</Text>
+          </Text>
+        </View>
+      </View>
       <TouchableOpacity
         style={styles.toucher}
         onPress={() => handlePress(item)}
       >
         <Image source={item.imagePreview} style={styles.image} />
       </TouchableOpacity>
-      <View style={styles.textContainer}>
-        <Text style={styles.name}>{item.name}</Text>
-        <View style={styles.textRow}>
-          <Text style={styles.text}>
-            {item.price} <Text style={styles.coloredMoney}>$</Text>
-          </Text>
-          <Text style={styles.text}>
-            {item.rate} <Text style={styles.coloredStar}>★</Text>
-          </Text>
-        </View>
-      </View>
     </View>
   )
 }
@@ -48,6 +51,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: "center",
     padding: 10,
+    marginHorizontal: 10,
+    borderRadius: 30,
+    // borderCurve:""
+    backgroundColor: colors.background[0],
   },
   toucher: {
     width: "100%",
@@ -57,31 +64,34 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 50,
+    borderRadius: 30,
   },
   textContainer: {
     paddingHorizontal: 20,
     width: "100%",
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   textRow: {
     paddingHorizontal: 20,
-    flexDirection: "row",
     justifyContent: "space-between",
   },
   name: {
-    width: "100%",
-    fontSize: 18,
+    fontSize: 32,
     marginBottom: 5,
-    color: "white",
+    color: "black",
   },
   text: {
     fontSize: 24,
     marginRight: 10,
-    color: "white",
+    color: "black",
+    textAlign: "right",
   },
   coloredStar: {
-    color: "gold",
+    color: "yellow",
+    width: 233,
   },
   coloredMoney: {
     color: "green",
