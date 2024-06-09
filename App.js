@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-//importing all the screens
 import LogInScreen from "./screens/LogInScreen"
 import SignUpScreen from "./screens/SignUpScreen"
 import HomePageScreen from "./screens/HomePageScreen"
@@ -18,7 +17,6 @@ export default function App() {
   const [user, setuser] = useState({ username: "", password: "" }) //a variable to give the current user to the next screen
   let Screen = <LogInScreen onChangeScreen={ChangeScreen} /> //a variable for the screen itself
 
-  //the function that sets the screen and passes the user
   function ChangeScreen(S, u) {
     setccreen(S)
     setuser(u)

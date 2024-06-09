@@ -1,12 +1,9 @@
 import React, { useState } from "react"
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native"
 import colors from "../assets/colors"
-//a component function for changing the stars count
 
 function Starspicker({ rate, starcounter }) {
-  //a function that takes the rate and return if the star should be filled or empty
   function strsnmbr(rate, strnm) {
-    // Get the floor of the number
     const sars = Math.floor(rate)
 
     if (strnm <= sars) {
@@ -16,7 +13,6 @@ function Starspicker({ rate, starcounter }) {
     }
   }
 
-  //an object that holds all he stars
   let [stars, setStars] = useState({
     star1: strsnmbr(rate, 1),
     star2: strsnmbr(rate, 2),
@@ -25,7 +21,6 @@ function Starspicker({ rate, starcounter }) {
     star5: strsnmbr(rate, 5),
   })
 
-  //function to change the stars when any is pressed
   function onPress(s) {
     starcounter(s)
     setStars({
@@ -58,7 +53,6 @@ function Starspicker({ rate, starcounter }) {
   )
 }
 
-//exporting the component
 export default Starspicker
 
 const styles = StyleSheet.create({

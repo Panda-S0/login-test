@@ -1,5 +1,3 @@
-//set an array of objects for the reviews with the number the same as the id of the product
-
 const reviews = {
   1: [
     { reviewNumber: 1, rate: 2, review: "froggo review 111" },
@@ -27,5 +25,4 @@ const reviews = {
   ],
 }
 
-//export it
 export default reviews

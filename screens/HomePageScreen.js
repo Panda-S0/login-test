@@ -3,7 +3,6 @@ import { StyleSheet, FlatList, View } from "react-native"
 import products from "../Data/products"
 import productMiniView from "../components/productComponents"
 
-//main homepage function
 function HomePageScreen({ navigation }) {
   return (
     <FlatList

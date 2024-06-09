@@ -3,7 +3,6 @@ import { LinearGradient } from "expo-linear-gradient"
 import {
   StyleSheet,
   Text,
-  Button,
   View,
   ScrollView,
   Modal,
@@ -20,29 +19,19 @@ import checkRate from "../Data/checkRate"
 import colors from "../assets/colors"
 import CoolButton from "../components/CoolButton.js"
 
-//Product Preview Screen
 function ProductPreviewScreen({ route }) {
-  //setting product variable to the product obj passed
   product = route.params?.product
-  //making the list of reviews
   let reviewlist = reviews[parseInt(product.id)]
-  //for the number of stars filled
   const [starCount, setStarCount] = useState(product.rate)
-  //to view the modal
   const [modalVisible, setModalVisible] = useState(false)
-  //the test input for writing a review
   const [writtenReview, setWrittenReview] = useState("")
-  //to show the new rate number if another review changed it
   const [Rate, setRate] = useState(product.rate)
-  //to make the photo fill the width of the space and the height be auto (this part took me longer than I am welling to admit xd)
   const [aspectRatio, setAspectRatio] = useState(null)
 
-  //change the value of the writtenReview variable when the text is inputted
   const WritingReview = (review) => {
     setWrittenReview(review)
   }
 
-  //add the review when the submit button is pressed and reseting the text input box to empty
   const addingReview = () => {
     if (writtenReview != "") {
       addReview(product.id, starCount, writtenReview)
@@ -264,7 +253,7 @@ const styles = StyleSheet.create({
   },
   modalBackground: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.3)", // Dim the background
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -274,14 +263,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background[1],
     padding: 20,
     borderRadius: 20,
-    elevation: 5, // For Android shadow
+    elevation: 5,
   },
   fade: {
-    height: 25, // Height of the fading effect
+    height: 25,
     position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 1, // Ensure it's above other content
+    zIndex: 1,
   },
 })

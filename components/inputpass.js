@@ -9,7 +9,6 @@ import {
 import { Ionicons } from "@expo/vector-icons"
 import colors from "../assets/colors"
 
-//a component function for the text box
 function Inpupass({
   placeholder,
   funk,
@@ -79,10 +78,8 @@ function Inpupass({
   )
 }
 
-//exporting the component
 export default Inpupass
 
-//styles for the component
 const styles = StyleSheet.create({
   viewall: {
     flex: 1,

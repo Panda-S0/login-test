@@ -1,4 +1,3 @@
-//set an array of objects for the users
 const users = [
   {
     username: "username",
@@ -15,5 +14,4 @@ const users = [
     password: "test",
   },
 ]
-//export it
 export default users

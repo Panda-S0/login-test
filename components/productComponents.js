@@ -8,14 +8,11 @@ import {
 import checkRate from "../Data/checkRate"
 import colors from "../assets/colors"
 
-//a component function for the product mini view
 function productMiniView({ item, navigation }) {
-  //function to go to the detailed view of the product if its pressed
   const handlePress = (item) => {
     navigation.navigate("ProductPreviewScreen", { product: item })
   }
 
-  //cheacks the rate for each function being loaded
   checkRate(item)
 
   return (
@@ -43,7 +40,6 @@ function productMiniView({ item, navigation }) {
   )
 }
 
-//exporting the component
 export default productMiniView
 
 const styles = StyleSheet.create({
@@ -53,7 +49,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginHorizontal: 10,
     borderRadius: 30,
-    // borderCurve:""
     backgroundColor: colors.background[0],
   },
   toucher: {

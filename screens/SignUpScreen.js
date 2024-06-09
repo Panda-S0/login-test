@@ -2,21 +2,17 @@ import { useState } from "react"
 import {
   StyleSheet,
   Alert,
-  Text,
   View,
-  Pressable,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native"
 
-//importing the needed components
 import addUser from "../Data/addUsers.js"
 import Inputext from "../components/inputext"
 import Inpupass from "../components/inputpass.js"
 import Redtext from "../components/redtext.js"
 import CoolButton from "../components/CoolButton.js"
 
-//main signup screen funtion
 function SignUpScreen({ navigation, route }) {
   const [currentUsername, setCurrentUsername] = useState("")
   const [currentFirst_name, setCurrentFirst_name] = useState("")
@@ -27,7 +23,6 @@ function SignUpScreen({ navigation, route }) {
   const [currentPassword_confirmation, setCurrentPassword_confirmation] =
     useState("")
 
-  //an object that contains all the variables
   const [currentUser] = useState({
     username: "",
     first_name: "",
@@ -39,7 +34,6 @@ function SignUpScreen({ navigation, route }) {
     password_confirmation: "",
   })
 
-  //variables for checking if the input is valid or not
   const [isValidEmail, setValidEmail] = useState(true)
   const [isValidPassword, setValidPassword] = useState(true)
   const [isValidPasswordConfirm, setValidPasswordConfirm] = useState(true)
@@ -48,7 +42,6 @@ function SignUpScreen({ navigation, route }) {
   const [isValidFirstName, setValidFirstName] = useState(true)
   const [isValidLastName, setValidLastName] = useState(true)
 
-  //to show and hide the password and password confirmation
   const [showPassword, setShowPassword] = useState(false)
 
   const handleTogglePasswordVisibility = () => {
@@ -60,7 +53,6 @@ function SignUpScreen({ navigation, route }) {
     setShowPasswordConfirm(!showPasswordConfirm)
   }
 
-  //functions to validate each input
   function validateFirstName() {
     const firstNameRegex = /^[a-zA-Z]{1,32}$/
     const firstNameIsValid = firstNameRegex.test(currentFirst_name)
@@ -97,8 +89,6 @@ function SignUpScreen({ navigation, route }) {
     setValidEmail(emailIsValid)
   }
 
-  //functions to update the 'currentUser' object
-  //whenever the text changes in each input textbox
   function addUsername(Content) {
     setCurrentUsername(Content)
     currentUser.username = Content
@@ -128,9 +118,6 @@ function SignUpScreen({ navigation, route }) {
     currentUser.password_confirmation = Content
   }
 
-  //a function to check for each input if its valid or not
-  //then go back to the log in screen if valid
-  //or send an alert message if not valid
   function CheckForViability() {
     if (
       isValidEmail &&

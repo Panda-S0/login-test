@@ -1,7 +1,6 @@
 import { StyleSheet, Text, Pressable } from "react-native"
 import colors from "../assets/colors"
 
-//a component function for the text box
 function CoolButton({ children, onPress, btnclr, txtclr }) {
   return (
     <Pressable
@@ -20,10 +19,8 @@ function CoolButton({ children, onPress, btnclr, txtclr }) {
   )
 }
 
-//exporting the component
 export default CoolButton
 
-//styles for the component
 const styles = StyleSheet.create({
   viewall: {
     height: 60,

@@ -2,7 +2,6 @@ import { View, StyleSheet, TextInput, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import colors from "../assets/colors"
 
-//a component function for the text box
 function Inputext({
   style,
   placeholder,
@@ -36,10 +35,8 @@ function Inputext({
   )
 }
 
-//exporting the component
 export default Inputext
 
-//styles for the component
 const styles = StyleSheet.create({
   viewall: {
     flexDirection: "row",

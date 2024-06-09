@@ -1,5 +1,3 @@
-//set an array of objects for the products
-
 const products = [
   {
     id: 1,
@@ -43,5 +41,4 @@ const products = [
   },
 ]
 
-//export it
 export default products

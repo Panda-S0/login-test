@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View } from "react-native"
 import colors from "../assets/colors"
 
-//a component function for the reviews view
 function reviewView({ item }) {
-  //switch case to set the stars depening on the rating
   let stars = ""
   switch (parseInt(item.rate)) {
     case 0:
@@ -36,7 +34,6 @@ function reviewView({ item }) {
   )
 }
 
-//exporting the component
 export default reviewView
 
 const styles = StyleSheet.create({
