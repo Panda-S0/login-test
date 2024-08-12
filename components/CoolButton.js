@@ -1,15 +1,24 @@
 import { StyleSheet, Text, Pressable } from "react-native"
 import colors from "../assets/colors"
 
-function CoolButton({ children, onPress, btnclr, txtclr }) {
+function CoolButton({
+  children,
+  onPress,
+  btnclr,
+  txtclr,
+  btnStyle,
+  Icon,
+}) {
   return (
     <Pressable
       onPress={onPress}
       style={[
         styles.viewall,
         { backgroundColor: btnclr ? btnclr : colors.background[0] },
+        btnStyle,
       ]}
     >
+      {Icon}
       <Text
         style={[styles.infoInput, { color: txtclr ? txtclr : "white" }]}
       >

@@ -3,6 +3,7 @@ import { useState } from "react"
 import { View, Text, StyleSheet, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { CustomBackButton } from "./Data/handleToken"
 
 import LogInScreen from "./screens/LogInScreen"
 import SignUpScreen from "./screens/SignUpScreen"
@@ -63,6 +64,7 @@ export default function App() {
                     <Text>{route.params?.usr}</Text>
                   </View>
                 ),
+                headerLeft: () => <CustomBackButton />,
               })}
             />
             <Stack.Screen
